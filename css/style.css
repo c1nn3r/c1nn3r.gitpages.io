@@ -1,0 +1,64 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+
+
+
+html{
+  font-family: monospace; 
+  font-size: 16px;
+  line-height: 1.2;
+  height: 90%;
+  color: #a7adba;
+
+}
+img {
+  height: 170px;
+  width: auto;
+}
+
+nav {
+    background-color:#414A4C;
+    }
+
+body{
+
+  height: 100%;
+  background-color: #0e1111 ;
+}
+
+.container{
+  display: block;
+  min-width: 240px;
+  max-width: 700px;
+  width: 100%;
+  
+  
+  min-height: 100px; 
+  height: 100%;  
+  
+ 
+  margin: 0 auto;
+  text-align: center;
+  
+  
+   display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+       -ms-flex-align: center;
+          align-items: center;
+    -webkit-box-pack: center;
+       -ms-flex-pack: center;
+     justify-content: center;
+}
+
+
+header{
+ 
+  min-height: 90px;
+  margin: auto 2%;
+}
