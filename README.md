@@ -1,5 +1,6 @@
 # SSSEC 
-![hue-anim-trans](https://user-images.githubusercontent.com/119784145/206855714-776babcb-01d3-41c2-a25e-0d941af54c25.gif)
+![sssec-logo-trans](https://user-images.githubusercontent.com/119784145/206855826-a615b80e-b551-4bd8-ad10-10d3e11cf3cf.png)
+
 
 Sssec is a Cybersecurity training, testing and recruitment platform based in Ethiopia, focused in 
 gathering the most talented individuals from around the country and teaching through practice, testing 
