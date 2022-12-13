@@ -130,15 +130,85 @@ checking and extracting the embedded file
 ![extracting_stegged](https://user-images.githubusercontent.com/119784145/207313885-28738bd7-a792-4847-9e3b-51637f3c685b.png)
 - seems like a zip file, with a 'sssec.dic' file inside of it
 
+![head_dictionary](https://user-images.githubusercontent.com/119784145/207314953-4ee5ee74-6279-493a-ab9a-2c34994e020f.png)
+- sssec.dic is a dictionary ... maybe with the password for the backup zip 
+
 ## Bruteforcing zip
 
-## Reverse Enginering
+With the dictionary now i can try and crack the password for the ssbackup.zip file 
+
+proceeding with john the ripper, converting it into a file john could work on and specifying the sssec.dic as wordlist
+
+```bash
+zip2john ssbackup.zip > 2j.txt
+john 2j.txt --wordlist=sssec.dic
+```
+![cracking_zip](https://user-images.githubusercontent.com/119784145/207315210-595ed6d9-1f41-4547-845d-56986d4523ce.png)
+- and sure enough, john found  the password for the zip!!
+
+Extracting the files!
+![extracted_zip](https://user-images.githubusercontent.com/119784145/207316047-3b85a8dc-79ed-4ae0-b211-6e7030cf8a8d.png)
+<sub>engrampa is 1337</sub>
+
+## Reverse Engineering
+
+Now that i have the source code files for whatever program is running on this server, i can take a look at them and get more details about those ports?
+
+Checking 'sssec.py'
+![sssecpyiscorrupt](https://user-images.githubusercontent.com/119784145/207317180-8730585c-b7de-4ab2-8083-10364a4367f4.png)
+- seems like its corrupted or something...
+
+Checking 'ssdeep'
+![ssdeepsourcecode](https://user-images.githubusercontent.com/119784145/207317521-5ad18f5f-dce2-499f-bba7-b6d4188000b1.png)
+- a long string variable assigned as 'intvar'...also looks like hex 
+
+![ssdeepsourcecode2](https://user-images.githubusercontent.com/119784145/207317753-d1700f98-3007-456c-bd45-1cf4dd119941.png)
+- Seems like some kind of python portal program...
 
 ## Deobfuscation 
 
-SSSEC{I7S_R1GH7_H3R3_09A8USYBNI87YHK} 9012312412, oh btw you should start listening to deftones
+Since intvar seems like hex, gotta try and decode/deobfuscate whatever its representing
+
+![ssdeepsourcecode_copytheintvar](https://user-images.githubusercontent.com/119784145/207317979-27e8e600-ce5f-445a-8a61-aa2d03a59559.png)
+- copying the string
+
+Using CyberChef <sub> because i want to keep my sanity </sub>
+
+![cyberchef 1](https://user-images.githubusercontent.com/119784145/207318358-cd1f0f55-6d6b-4974-a8c8-449eb318fa34.jpg)
+- From hex,  decodes into what seems like base64 , but with the equal signs at the top...this might be reversed
+
+![cyberchef 2](https://user-images.githubusercontent.com/119784145/207318749-04a30b2e-81ce-4edf-8a03-6facccfed425.jpg)
+- Reversed, and From base64 outputs binary 
+
+![cyberchef 3](https://user-images.githubusercontent.com/119784145/207319171-23276965-183b-4cf6-803d-4d54e1665b20.jpg)
+- And again, From binary then from hex gives us the first flag and some text!
+
+Replacing the giant hex with the deobfuscated version
+![intvar_deofuscated](https://user-images.githubusercontent.com/119784145/207320044-08ffb70c-ee2e-4b32-9f72-7cb160309f60.png)
 
 ## Bruteforcing ports
+
+Okay so now that ive have got the first flag <sub>and a proper music taste</sub> lets proceed poking around those ports 
+
+Started with another nmap scan
+```bash
+nmap -sV -sC $ip -p- 
+```
+![nmap changes ports](https://user-images.githubusercontent.com/119784145/207320219-680f46b6-6fed-46b6-949f-2d2914c13fd1.png)
+- okay, now its seems like the others are gone and we have only this one port.. a bug maybe?
+
+Trying to netcat into it
+```bash
+nc $ip 20383 -vv
+```
+and it refuses the connection as if that port wasnt open, doing the nmap scan again shows a new port open...
+
+THIS IS WEIRD
+
+# cringe Enlightment moment <sub> + and a networking lesson lol</sub>
+
+But wait, what if the target is running a loop with netcat to the ssdeep program, If thats the case the port changes every connection, even when nmap scans it, its connecting to it and grabbing the banner and other signatures...
+
 
 ## Rabbit hole
 
