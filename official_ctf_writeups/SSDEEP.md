@@ -2,7 +2,7 @@
 
 # SSSEC SSDEEP OFFICIAL WRITEUP
 
-![SSDEEP,LOGO](https://user-images.githubusercontent.com/119784145/207301869-2a0d3215-09c8-4cf4-8e19-bc7e0a6bb836.jpg)
+![ssdeep banner](https://user-images.githubusercontent.com/119784145/207700464-a4e849bf-5922-488e-aafe-6dc5bdc05d35.jpg)
 
    <sub>by c1nn3r:vampire:</sub>
    
