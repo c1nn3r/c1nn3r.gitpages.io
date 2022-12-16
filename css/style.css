@@ -5,6 +5,17 @@
 
 }
 
+.resp {
+  color: white;
+  background-color: black;
+}
+
+.resp:hover {
+
+  color: greenyellow;
+  background-color: black;
+  
+}
 
 
 html{
@@ -13,6 +24,7 @@ html{
   line-height: 1.2;
   height: 90%;
   color: #a7adba;
+  height: 100%;
 
 }
 img {
@@ -27,14 +39,14 @@ nav {
 body{
 
   height: 100%;
-  background-color: #0e1111 ;
+  
 }
 
 .container{
   display: block;
-  min-width: 240px;
+  min-width: 440px;
   max-width: 700px;
-  width: 100%;
+  width: 200%;
   
   
   min-height: 100px; 
