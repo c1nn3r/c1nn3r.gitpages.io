@@ -7,4 +7,4 @@ gathering the most talented individuals from around the country and teaching thr
 and recruiting them to work as Redteamers, Penetration testers and Ethical hackers as freelancers or fulltime employees in various organizations in the country
 
 ### contact 
-c1nn3r@gmail.com
+c1nn3r@proton.me
